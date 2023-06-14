@@ -32,7 +32,6 @@ namespace Etsy
             //Act
             EtsyMainPage etsyMainPage = new EtsyMainPage(_driver);
           
-            //Assert
             _actions = new Actions(_driver);
             _actions.MoveToElement(etsyMainPage.ClothingAndShoesMenuItem).Perform();
             etsyMainPage.BootsSubMenu.Click();
@@ -40,6 +39,7 @@ namespace Etsy
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             _wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
 
+            //Assert
             Console.WriteLine("Кількість елементів зі знижкою: " + etsyMainPage.DiscountedItems.Count);
         }
 
