@@ -40,7 +40,11 @@ namespace Etsy
             _wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
 
             //Assert
-            Console.WriteLine("Кількість елементів зі знижкою: " + etsyMainPage.DiscountedItems.Count);
+            int discountedItemCount = etsyMainPage.DiscountedItems.Count;
+            int totalItemCount = etsyMainPage.TotalItems.Count;
+            Assert.AreNotEqual(totalItemCount, discountedItemCount, "Кількість товарів зі знижкою дорівнює загальній кількості товарів.");
+
+            Console.WriteLine("Кількість товарів зі знижкою: " + etsyMainPage.DiscountedItems.Count);
         }
 
         [TearDown] 
